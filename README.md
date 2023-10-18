@@ -9,6 +9,9 @@ Users can provide either the exact table name or ask for the most relevant one. 
 The project utilizes the Marvin library. Marvin is an AI-powered classifier that employs logit bias to return classifications.
 
 •	The user can ask questions which are classified as select/insert/update or other questions.
+
 • The user can provide the exact table name for faster and more accurate responses.
+
 • In case of a SELECT, the user is asked if they want to execute the statement. In the prompt, we ask the LLM to wrap the SQL statement in ```sql<statement>```. If the user wishes to execute, the statement is automatically parsed from the model’s output and executed by EvaDB.
+
 •	After each response the user is asked if they want to ask another question. Once they answer ‘no’, the session ends.
