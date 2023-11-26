@@ -19,7 +19,7 @@ from evadb.configuration.constants import EvaDB_INSTALLATION_DIR
 cursor = evadb.connect().cursor()
 warnings.filterwarnings("ignore")
 #set OpenAI API key
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = 'sk-...'
 open_ai_key = os.environ.get('OPENAI_API_KEY')
 marvin.settings.openai.api_key = os.environ.get('OPENAI_API_KEY')
 
