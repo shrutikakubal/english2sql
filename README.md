@@ -7,9 +7,7 @@ We connect to EvaDB and the Postgres database, where the schema of each table is
 The 'SUMMARY' table serves as context for the AI model (gpt-3.5turbo) to answer questions accurately. We use EvaDB's CHATGPT function to ask questions, using custom prompts tailored for each type of query.
 Users can provide either the exact table name or ask for the most relevant one. 
 
-If the table name is provided, its schema is used as context for the AI model. 
-
-If not, we run a vector embedding-based similarity search to find the most relevant tables, and the LLM generates SQL statements accordingly.
+If the table name is provided, its schema is used as context for the AI model. If not, we run a vector embedding-based similarity search to find the most relevant tables, and the LLM generates SQL statements accordingly.
 
 The project utilizes the Marvin library to call different functions based on the user's request. Marvin is an AI-powered classifier that employs logit bias to return classifications.
 
