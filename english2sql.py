@@ -247,7 +247,18 @@ class InstructionRouter(Enum):
   SELECT = dict(tool=SelectQuestion, description="When the user wants some information about the stored data")
   UPDATE = dict(tool=UpdateQuestion, description="When the user wants to update existing data")
   QUESTION = dict(tool=OriginalQuestion, description="When the user wants wants more information or wants to ask a different question")
- 
+
+#Set up dummy table to run Extended ChatGPT function
+cursor.query("""DROP TABLE IF EXISTS dummy_table""").df()
+cursor.query("""CREATE TABLE dummy_table(table_name TEXT UNIQUE)""").execute()
+insert_text = f"INSERT into dummy_table (table_name) values ('Choose relevant instruction based on the query')"
+cursor.query(insert_text).df()
+prompt = pd.DataFrame(["Use the context to answer."])
+cursor.query("DROP FUNCTION IF EXISTS ExtendedChatGPT;").df()
+cursor.query(f"""CREATE FUNCTION ExtendedChatGPT IMPL 'ExtendedChatGPT.py'""").df()
+#instruction = cursor.query(f"""select ExtendedChatGPT('{question}',table_name, '{prompt}', {InstructionRouter},{False}) from dummy_table""").df()
+inst = instruction["response"][0]
+tools = InstructionRouter.__members__[inst].value
 
 #Initialize summary and vector index
 flag = True
