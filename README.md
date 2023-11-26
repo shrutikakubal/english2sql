@@ -1,5 +1,5 @@
 # english2sql
-English to SQL converter powered by EvaDB
+An English-to-SQL converter powered by EvaDB
 
 This project aims to provide an AI powered model that will generate SQL statements based on the user’s requests in natural language.
 
